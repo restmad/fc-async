@@ -1,6 +1,6 @@
-package com.xy.async.demo.controller;
+package com.async.demo.controller;
 
-import com.xy.async.demo.service.DemoService;
+import com.async.demo.service.DemoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -34,7 +34,7 @@ public abstract class AbstractHandlerService implements HandlerService {
     @Autowired
     protected AsyncConverter asyncConverter;
 
-    @Autowired
+    @Autowired(required = false)
     protected AsyncProducer asyncProducer;
 
     @Autowired

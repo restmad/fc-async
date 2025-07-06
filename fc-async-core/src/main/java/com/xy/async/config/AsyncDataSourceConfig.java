@@ -10,7 +10,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @author xiongyan
  * @date 2022/5/9
  */
-@ConfigurationProperties(prefix = "async.datasource")
+@ConfigurationProperties(prefix = "fc.async.datasource")
 public class AsyncDataSourceConfig extends LinkedHashMap<String, Object> {
 
 }

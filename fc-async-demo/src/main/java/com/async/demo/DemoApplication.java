@@ -1,4 +1,4 @@
-package com.xy.async.demo;
+package com.async.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

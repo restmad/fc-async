@@ -99,13 +99,13 @@ public class AsyncReqDaoImpl implements AsyncReqDao {
 
     @Override
     public Integer countAsync(String applicationName) {
-        String sql = "select count(*) from async_req where exec_status = 1 and exec_count >= ? and application_name = ?";
-        return asyncJdbcTemplate.queryForObject(sql, Integer.class, execCount, applicationName);
+        String sql = "select count(*) from async_req where exec_status = 1 and application_name = ?";
+        return asyncJdbcTemplate.queryForObject(sql, Integer.class, applicationName);
     }
 
     @Override
     public List<AsyncReq> listAsync(String applicationName, int pageIndex, int pageSize) {
-        String sql = "select * from async_req where exec_status = 1 and exec_count >= ? and application_name = ? order by id limit ?, ?";
-        return asyncJdbcTemplate.query(sql, new BeanPropertyRowMapper<>(AsyncReq.class), execCount, applicationName, pageIndex, pageSize);
+        String sql = "select * from async_req where exec_status = 1 and application_name = ? order by id limit ?, ?";
+        return asyncJdbcTemplate.query(sql, new BeanPropertyRowMapper<>(AsyncReq.class), applicationName, pageIndex, pageSize);
     }
 }

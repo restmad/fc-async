@@ -27,16 +27,16 @@ import com.alibaba.ttl.threadpool.TtlExecutors;
 @EnableConfigurationProperties(AsyncDataSourceConfig.class)
 public class AsyncConfig {
 
-    @Value("${async.executor.thread.corePoolSize:10}")
+    @Value("${fc.async.executor.thread.corePoolSize:10}")
     private int corePoolSize;
 
-    @Value("${async.executor.thread.maxPoolSize:50}")
+    @Value("${fc.async.executor.thread.maxPoolSize:50}")
     private int maxPoolSize;
 
-    @Value("${async.executor.thread.queueCapacity:10000}")
+    @Value("${fc.async.executor.thread.queueCapacity:10000}")
     private int queueCapacity;
 
-    @Value("${async.executor.thread.keepAliveSeconds:600}")
+    @Value("${fc.async.executor.thread.keepAliveSeconds:600}")
     private int keepAliveSeconds;
 
     @Bean("asyncJdbcTemplate")

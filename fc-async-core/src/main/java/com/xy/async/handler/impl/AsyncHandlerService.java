@@ -24,6 +24,9 @@ public class AsyncHandlerService extends AbstractHandlerService {
 
     @Override
     public boolean execute(AsyncContext context) {
+        if (asyncProducer == null) {
+            throw new RuntimeException("kafka is not enabled");
+        }
         // 放入消息队列
         return asyncProducer.send(context.getAsyncExecDto());
     }

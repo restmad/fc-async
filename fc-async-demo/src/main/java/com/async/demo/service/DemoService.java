@@ -1,4 +1,4 @@
-package com.xy.async.demo.service;
+package com.async.demo.service;
 
 public interface DemoService {
     String invoke(String json);
