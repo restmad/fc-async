@@ -3,17 +3,21 @@
 
 需要在拦截器加上任务列表静态资源和接口的访问拦截。如：/async/index.html和/xy/async/page
 
+本次修改，关闭异步MQ的默认支持，如果需要异步MQ则修改配置文件且引入kafka的相关组件即可支持。
+
+本次修改主要提供同步保存和同步方法执行，故修改错误次数为1的进入到错误列表。
+
 
 ## 异步策略
-![image](https://github.com/xiongyanokok/fc-async/assets/11241127/1b7aebf1-d4f7-49ee-8830-bcfc48237ebf)
+![image](doc/async_strategy.png)
 
 本组件多加了一个SAVE_SYNC，先保存数据库，再同步执行业务方法（比如调用某个接口、保存某个数据），如果业务方法失败，则可以使用错误列表进行重推
 ## 安全级别
-![image](https://github.com/xiongyanokok/fc-async/assets/11241127/12432d25-b910-4475-94f6-177237b41b20)
+![image](doc/qa.png)
 
 
 ## 效果展示
-![image](https://github.com/xiongyanokok/fc-async/assets/11241127/27129d28-417d-4d0c-b0b5-6138b26e4c11)
+![image](doc/show.png)
 
 
 ## 数据库脚本
