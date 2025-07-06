@@ -11,7 +11,7 @@
 ## 异步策略
 ![image](doc/async_strategy.png)
 
-本组件多加了一个SAVE_SYNC，先保存数据库，再同步执行业务方法（比如调用某个接口、保存某个数据），如果业务方法失败，则可以使用错误列表进行重推
+本组件多加了一个SAVE_SYNC，先保存数据库，再同步执行业务方法（比如调用某个接口、保存某个数据），如果业务方法失败，则可以使用错误列表进行重推。当然，也可以结合xxl-job，进行定时重试和补偿。
 ## 安全级别
 ![image](doc/qa.png)
 
@@ -98,7 +98,7 @@ fc.async.enabled=true
 @AsyncExec(type = AsyncExecEnum.SAVE_ASYNC, remark = "数据字典")
 
 #### 3，人工处理地址
-http://localhost:8004/async/index.html
+http://localhost:9900/async/index.html
 
 
 
