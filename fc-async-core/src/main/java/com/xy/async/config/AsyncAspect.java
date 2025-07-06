@@ -24,8 +24,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Aspect
 @Component
-@ConditionalOnProperty(prefix = "async", value = "enabled", havingValue = "true")
+@ConditionalOnProperty(prefix = "fc.async", value = "enabled", havingValue = "true")
 public class AsyncAspect {
+    public AsyncAspect() {
+        log.info("AsyncAspect 异步组件已加载...");
+    }
 
     @Autowired
     private ApplicationEventPublisher publisher;

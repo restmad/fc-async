@@ -26,7 +26,7 @@ public class AsyncProducer {
     /**
      * 队列名称前缀：默认是应用名称
      */
-    @Value("${async.topic:${spring.application.name}}")
+    @Value("${async.topic:${spring.application.name:spring-boot-application}}")
     private String asyncTopic;
 
     /**

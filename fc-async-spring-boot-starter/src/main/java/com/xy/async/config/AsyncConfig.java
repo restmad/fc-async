@@ -23,7 +23,7 @@ import com.alibaba.ttl.threadpool.TtlExecutors;
  */
 @Configuration
 @ComponentScan({ "com.xy.async" })
-@ConditionalOnProperty(prefix = "async", value = "enabled", havingValue = "true")
+@ConditionalOnProperty(prefix = "fc.async", value = "enabled", havingValue = "true")
 @EnableConfigurationProperties(AsyncDataSourceConfig.class)
 public class AsyncConfig {
 

@@ -27,7 +27,7 @@ public class AsyncConsumer {
     /**
      * 队列名称前缀：默认是应用名称
      */
-    @Value("${async.topic:${spring.application.name}}")
+    @Value("${async.topic:${spring.application.name:spring-boot-application}}")
     private String asyncTopic;
 
     /**
@@ -36,7 +36,7 @@ public class AsyncConsumer {
      * @param asyncExecDto
      * @return
      */
-    @KafkaListener(topics = "${async.topic:${spring.application.name}}" + AsyncConstant.QUEUE_SUFFIX,groupId = "${spring.application.name}")
+    @KafkaListener(topics = "${async.topic:${spring.application.name:spring-boot-application}}" + AsyncConstant.QUEUE_SUFFIX,groupId = "${spring.application.name:spring-boot-application}")
     public void onConsume(AsyncExecDto asyncExecDto) {
         String queueName = asyncTopic + AsyncConstant.QUEUE_SUFFIX;
         try {

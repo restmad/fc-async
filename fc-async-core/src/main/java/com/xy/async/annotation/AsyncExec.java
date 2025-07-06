@@ -36,5 +36,5 @@ public @interface AsyncExec {
      * 
      * @return
      */
-    String remark();
+    String remark() default "async task";
 }

@@ -24,7 +24,7 @@ public class AsyncReqServiceImpl implements AsyncReqService {
     @Autowired(required = false)
     private AsyncReqDao asyncReqDao;
 
-    @Value("${spring.application.name}")
+    @Value("${spring.application.name:spring-boot-application}")
     private String applicationName;
 
     @Override

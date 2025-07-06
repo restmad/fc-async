@@ -40,7 +40,7 @@ public abstract class AbstractHandlerService implements HandlerService {
     @Autowired
     protected AsyncReqService asyncReqService;
 
-    @Value("${spring.application.name}")
+    @Value("${spring.application.name:spring-boot-application}")
     private String applicationName;
 
     @Override

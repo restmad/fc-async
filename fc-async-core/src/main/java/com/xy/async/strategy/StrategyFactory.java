@@ -29,7 +29,7 @@ public class StrategyFactory {
      * @return
      */
     public static <O extends StrategyContext, T extends StrategyService<O>> T doStrategy(String type, Class<T> clazz) {
-        if (StringUtils.hasText(type) || null == clazz) {
+        if (!StringUtils.hasText(type) || null == clazz) {
             return null;
         }
 

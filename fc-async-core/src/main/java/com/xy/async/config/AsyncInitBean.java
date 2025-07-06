@@ -2,15 +2,18 @@ package com.xy.async.config;
 
 import com.xy.async.annotation.AsyncExec;
 import com.xy.async.dto.ProxyMethodDto;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.core.Ordered;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ReflectionUtils;
+import org.springframework.context.ApplicationContext;
 
 import java.lang.reflect.Method;
 
@@ -21,9 +24,11 @@ import java.lang.reflect.Method;
  * @date 2021/6/19
  */
 @Component
-@Order(value = -1)
-@ConditionalOnProperty(prefix = "async", value = "enabled", havingValue = "true")
+@ConditionalOnProperty(prefix = "fc.async", value = "enabled", havingValue = "true")
+@Slf4j
 public class AsyncInitBean implements BeanPostProcessor {
+    @Autowired
+    private ApplicationContext applicationContext;
 
     @Autowired
     private AsyncProxy asyncProxy;
@@ -39,8 +44,9 @@ public class AsyncInitBean implements BeanPostProcessor {
             if (null == asyncExec) {
                 continue;
             }
+            log.info("async enhanced bean: {}", beanName);
             ProxyMethodDto proxyMethodDto = new ProxyMethodDto();
-            proxyMethodDto.setBean(SpringBeanConfig.getBean(beanName));
+            proxyMethodDto.setBean(applicationContext.getBean(beanName));
             proxyMethodDto.setMethod(method);
             // 生成方法唯一标识
             String key = asyncProxy.getAsyncMethodKey(bean, method);

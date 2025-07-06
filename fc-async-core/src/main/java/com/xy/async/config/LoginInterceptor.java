@@ -29,7 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Aspect
 @Component
-@ConditionalOnProperty(prefix = "async", value = "enabled", havingValue = "true")
+@ConditionalOnProperty(prefix = "fc.async", value = "enabled", havingValue = "true")
 public class LoginInterceptor {
 
     @Value("${async.login.enabled:false}")
@@ -38,7 +38,7 @@ public class LoginInterceptor {
     @Value("${async.login.url:}")
     private String loginUrl;
 
-    @Value("${spring.application.name}")
+    @Value("${spring.application.name:spring-boot-application}")
     private String applicationName;
 
     private static final String RESULT = "{\"code\":%s,\"msg\":\"%s\"}";
