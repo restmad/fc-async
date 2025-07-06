@@ -56,7 +56,7 @@ public class AsyncAspect {
                 // 8种基本类型需特殊处理（byte、short、char、int、long、float、double、boolean）
                 return returnType == Boolean.TYPE ? Boolean.TRUE : 1;
             }
-            return null;
+            return context.getResult();
         }
     }
 

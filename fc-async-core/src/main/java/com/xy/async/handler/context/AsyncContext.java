@@ -34,4 +34,17 @@ public class AsyncContext extends StrategyContext {
      */
     private AsyncExecDto asyncExecDto;
 
+    /**
+     * 执行结果
+     * @param result
+     */
+    private Object result;
+
+    /**
+     * 设置同步执行结果
+     * @param result
+     */
+    public void setExecResult(Object result) {
+        this.result = result;
+    }
 }

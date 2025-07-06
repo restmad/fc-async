@@ -31,13 +31,15 @@ public class SaveSyncHandlerService extends AbstractHandlerService {
         AsyncReq asyncReq = this.saveAsyncReq(context.getAsyncExecDto(), ExecStatusEnum.INIT.getStatus());
         try {
             // 同步处理
-            context.getJoinPoint().proceed();
+            Object result = context.getJoinPoint().proceed();
+            context.setExecResult(result);
             // 更新状态为成功
             asyncReqService.updateStatus(asyncReq.getId(), ExecStatusEnum.SUCCESS.getStatus());
         } catch (Throwable e) {
             log.warn("先同步处理失败：{}", context.getAsyncExecDto(), e);
             // 更新状态为失败
             asyncReqService.updateStatus(asyncReq.getId(), ExecStatusEnum.ERROR.getStatus());
+            throw new RuntimeException(e);
         }
 
         return true;
