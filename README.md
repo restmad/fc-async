@@ -1,7 +1,13 @@
+## 注意
+组件本身不做权限校验。错误列表的访问，应该由应用系统来控制。
+
+需要在拦截器加上任务列表静态资源和接口的访问拦截。如：/async/index.html和/xy/async/page
+
+
 ## 异步策略
 ![image](https://github.com/xiongyanokok/fc-async/assets/11241127/1b7aebf1-d4f7-49ee-8830-bcfc48237ebf)
 
-
+本组件多加了一个SAVE_SYNC，先保存数据库，再同步执行业务方法（比如调用某个接口、保存某个数据），如果业务方法失败，则可以使用错误列表进行重推
 ## 安全级别
 ![image](https://github.com/xiongyanokok/fc-async/assets/11241127/12432d25-b910-4475-94f6-177237b41b20)
 
@@ -42,52 +48,42 @@ CREATE TABLE `async_log` (
 
 
 ## 配置
-
-#### 开关：默认关闭
-async.enabled=true
-
-#### 数据源 druid 
-async.datasource.driver-class-name=com.mysql.jdbc.Driver<br>
-async.datasource.url=jdbc:mysql://127.0.0.1:3306/fc_async?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&rewriteBatchedStatements=true<br>
-async.datasource.username=user<br>
-async.datasource.password=xxxx<br>
-async.datasource.filters=config<br>
-async.datasource.connectionProperties=config.decrypt=true;config.decrypt.key=yyy
-#### 静态地址
-spring.resources.add-mappings=true<br>
-spring.resources.static-locations=classpath:/static/
-
+```properties
+fc.async.enabled=true
+fc.async.kafka.enabled=false
+fc.async.datasource.url=jdbc:mysql://localhost:3306/demo?characterEncoding=utf-8&useSSL=false&zeroDateTimeBehavior=convertToNull&useTimezone=true&serverTimezone=GMT%2B8
+fc.async.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+fc.async.datasource.username=javaweb
+fc.async.datasource.password=javaweb
+```
 
 ### 以下配置都有默认值
 #### 核心线程数
-async.executor.thread.corePoolSize=10
+fc.async.executor.thread.corePoolSize=10
 #### 最大线程数
-async.executor.thread.maxPoolSize=50
+fc.async.executor.thread.maxPoolSize=50
 #### 队列容量
-async.executor.thread.queueCapacity=10000
+fc.async.executor.thread.queueCapacity=10000
 #### 活跃时间
-async.executor.thread.keepAliveSeconds=600
+fc.async.executor.thread.keepAliveSeconds=600
 
 #### 执行成功是否删除记录：默认删除
-async.exec.deleted=true
+fc.async.exec.deleted=true
  
 #### 自定义队列名称前缀：默认应用名称
-async.topic=应用名称
+fc.async.topic=应用名称
  
-#### 重试执行次数：默认5次
-async.exec.count=5
+#### 重试执行次数：默认1次
+fc.async.exec.count=1
  
 #### 重试最大查询数量
-async.retry.limit=100
+fc.async.retry.limit=100
 
 #### 补偿最大查询数量
-async.comp.limit=100
+fc.async.comp.limit=100
 
 #### 登录开关：默认关闭
-async.login.enabled=false
-
-#### 登录url
-async.login.url=http://xxxx.com
+fc.async.login.enabled=false
 
 
 ## 用法
