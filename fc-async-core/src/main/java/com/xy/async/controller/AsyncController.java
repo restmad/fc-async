@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,8 +17,6 @@ import com.xy.async.domain.entity.AsyncReq;
 import com.xy.async.domain.service.AsyncLogService;
 import com.xy.async.domain.service.AsyncReqService;
 import com.xy.async.dto.PageInfoDto;
-
-import cn.hutool.core.util.StrUtil;
 
 /**
  * 异步执行API
@@ -51,7 +50,7 @@ public class AsyncController {
             return this.error("异步任务不存在");
         }
         Map<String, Object> dataMap = new HashMap<>();
-        if (StrUtil.isNotEmpty(asyncReq.getParamJson())) {
+        if (StringUtils.hasText(asyncReq.getParamJson())) {
             asyncReq.setParamJson(asyncReq.getParamJson().replace("\"", ""));
         }
         dataMap.put("req", asyncReq);

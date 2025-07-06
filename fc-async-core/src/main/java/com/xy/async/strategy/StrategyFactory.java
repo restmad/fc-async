@@ -8,10 +8,9 @@ import org.springframework.aop.support.AopUtils;
 import com.xy.async.config.SpringBeanConfig;
 import com.xy.async.strategy.context.StrategyContext;
 
-import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.map.MapUtil;
-import cn.hutool.core.util.StrUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 /**
  * 策略工厂类
@@ -30,12 +29,12 @@ public class StrategyFactory {
      * @return
      */
     public static <O extends StrategyContext, T extends StrategyService<O>> T doStrategy(String type, Class<T> clazz) {
-        if (StrUtil.isEmpty(type) || null == clazz) {
+        if (StringUtils.hasText(type) || null == clazz) {
             return null;
         }
 
         Map<String, T> beanMap = SpringBeanConfig.getBeansOfType(clazz);
-        if (MapUtil.isEmpty(beanMap)) {
+        if (CollectionUtils.isEmpty(beanMap)) {
             log.error("策略实现类不存在，type = {}，clazz = {}", type, clazz.getName());
             return null;
         }
@@ -52,7 +51,7 @@ public class StrategyFactory {
                 }
                 // 策略类型列表
                 List<String> types = entry.getValue().listType();
-                if (CollUtil.isNotEmpty(types) && types.contains(type)) {
+                if (!CollectionUtils.isEmpty(types) && types.contains(type)) {
                     return entry.getValue();
                 }
             }

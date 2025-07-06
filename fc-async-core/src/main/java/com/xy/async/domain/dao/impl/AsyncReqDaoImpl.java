@@ -15,8 +15,7 @@ import org.springframework.stereotype.Repository;
 
 import com.xy.async.domain.dao.AsyncReqDao;
 import com.xy.async.domain.entity.AsyncReq;
-
-import cn.hutool.core.collection.CollUtil;
+import org.springframework.util.CollectionUtils;
 
 /**
  * 异步执行 dao
@@ -83,7 +82,7 @@ public class AsyncReqDaoImpl implements AsyncReqDao {
     public AsyncReq getById(Long id) {
         String sql = "select * from async_req where id = ?";
         List<AsyncReq> list = asyncJdbcTemplate.query(sql, new BeanPropertyRowMapper<>(AsyncReq.class), id);
-        return CollUtil.isEmpty(list) ? null : list.get(0);
+        return CollectionUtils.isEmpty(list) ? null : list.get(0);
     }
 
     @Override

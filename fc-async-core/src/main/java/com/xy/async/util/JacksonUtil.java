@@ -13,8 +13,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import cn.hutool.core.util.StrUtil;
+import org.springframework.util.StringUtils;
 
 /**
  * Jackson 工具类
@@ -64,7 +63,7 @@ public final class JacksonUtil {
      */
     public static Serializable toJsonNode(String json) {
         try {
-            if (StrUtil.isEmpty(json)) {
+            if (!StringUtils.hasText(json)) {
                 return json;
             }
             return (Serializable) OBJECT_MAPPER.readTree(json);

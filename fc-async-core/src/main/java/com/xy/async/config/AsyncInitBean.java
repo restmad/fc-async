@@ -1,8 +1,8 @@
 package com.xy.async.config;
 
-import java.lang.reflect.Method;
-
+import com.xy.async.annotation.AsyncExec;
 import com.xy.async.dto.ProxyMethodDto;
+import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanPostProcessor;
@@ -12,9 +12,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ReflectionUtils;
 
-import com.xy.async.annotation.AsyncExec;
-
-import cn.hutool.core.util.ArrayUtil;
+import java.lang.reflect.Method;
 
 /**
  * 异步执行初始化
@@ -33,7 +31,7 @@ public class AsyncInitBean implements BeanPostProcessor {
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
         Method[] methods = ReflectionUtils.getAllDeclaredMethods(bean.getClass());
-        if (ArrayUtil.isEmpty(methods)) {
+        if (ArrayUtils.isEmpty(methods)) {
             return bean;
         }
         for (Method method : methods) {
