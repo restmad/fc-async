@@ -92,7 +92,7 @@ fc.async.login.enabled=false
 
 ## 用法
 #### 1，异步开关
-async.enabled=true
+fc.async.enabled=true
 
 #### 2，在需要异步执行的方法加注解 （必须是spring代理方法）
 @AsyncExec(type = AsyncExecEnum.SAVE_ASYNC, remark = "数据字典")

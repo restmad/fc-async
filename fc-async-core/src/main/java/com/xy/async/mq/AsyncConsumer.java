@@ -29,7 +29,7 @@ public class AsyncConsumer {
     /**
      * 队列名称前缀：默认是应用名称
      */
-    @Value("${async.topic:${spring.application.name:spring-boot-application}}")
+    @Value("${fc.async.topic:${spring.application.name:spring-boot-application}}")
     private String asyncTopic;
 
     /**

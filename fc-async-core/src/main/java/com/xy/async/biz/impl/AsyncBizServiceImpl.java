@@ -50,13 +50,13 @@ public class AsyncBizServiceImpl implements AsyncBizService  {
     /**
      * 执行成功是否删除：默认是
      */
-    @Value("${async.exec.deleted:true}")
+    @Value("${fc.async.exec.deleted:true}")
     private boolean deleted;
 
     /**
      * 最大重试执行次数：默认5次
      */
-    @Value("${async.exec.count:5}")
+    @Value("${fc.async.exec.count:1}")
     private int execCount;
 
     /**

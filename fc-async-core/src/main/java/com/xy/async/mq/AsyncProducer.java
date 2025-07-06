@@ -15,7 +15,6 @@ import lombok.extern.slf4j.Slf4j;
  * 异步执行提供者
  *
  * @author xiongyan
- * @date 2021/01/08
  */
 @Slf4j
 @Component
@@ -28,7 +27,7 @@ public class AsyncProducer {
     /**
      * 队列名称前缀：默认是应用名称
      */
-    @Value("${async.topic:${spring.application.name:spring-boot-application}}")
+    @Value("${fc.async.topic:${spring.application.name:spring-boot-application}}")
     private String asyncTopic;
 
     /**
